@@ -1,6 +1,6 @@
 variable "db_hostname" {
   description = "Database host for Wordpress"
-  default     = "db"
+  default     = "mariadb"
 }
 
 variable "db_name" {

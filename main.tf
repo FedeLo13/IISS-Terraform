@@ -25,10 +25,10 @@ resource "docker_container" "wordpress" {
     external = 8080
   }
   env = [
-    "WORDPRESS_DB_HOST     = ${var.db_hostname}",
-    "WORDPRESS_DB_NAME     = ${var.db_name}",
-    "WORDPRESS_DB_USER     = ${var.db_usr}",
-    "WORDPRESS_DB_PASSWORD = ${var.db_passwd}"
+    "WORDPRESS_DB_HOST=${var.db_hostname}",
+    "WORDPRESS_DB_NAME=${var.db_name}",
+    "WORDPRESS_DB_USER=${var.db_usr}",
+    "WORDPRESS_DB_PASSWORD=${var.db_passwd}"
   ]
   networks_advanced {
     name = docker_network.my_red.name
@@ -39,8 +39,10 @@ resource "docker_container" "mariadb" {
   image = "mariadb"
   name  = "mariadb"
   env = [
-    "MARIADB_ROOT_PASSWORD = *vVjN4JxS!6O*#DW",
-    "MARIADB_DATABASE      = wordpress"
+    "MARIADB_DATABASE=wordpress",
+    "MARIADB_USER=wordpress",
+    "MARIADB_PASSWORD=password",
+    "MARIADB_ROOT_PASSWORD=*vVjN4JxS!6O*#DW"
   ]
   networks_advanced {
     name = docker_network.my_red.name
